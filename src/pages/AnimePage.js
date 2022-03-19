@@ -16,7 +16,7 @@ const AnimePage = ({ quoteData }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const res = await fetch('https://animechan.vercel.app/api/random');
     const quoteData = await res.json();
