@@ -3,10 +3,6 @@ import Nav from '../components/Nav'
 import SearchBar from '../components/SearchBar'
 import Head from 'next/head'
 
-function Header({ title }) {
-    return <h1>{title ? title : 'Default title'}</h1>
-}
-
 const HomePage = () => {
     return (
         <>
@@ -17,7 +13,6 @@ const HomePage = () => {
 
             <div style={{ textAlign: 'center' }}>
                 <Nav />
-                <Header title='Develop. Preview. Ship. 🚀' />
                 <main className='container'>
                     <SearchBar />
                 </main>
