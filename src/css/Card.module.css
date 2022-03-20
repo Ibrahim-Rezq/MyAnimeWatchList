@@ -1,0 +1,13 @@
+.card {
+    width: 360px;
+    text-align: center;
+    margin: auto;
+}
+.cardHead {
+    margin: 0;
+}
+.cardBody {
+}
+.cardBody p {
+    opacity: 0.8;
+}
