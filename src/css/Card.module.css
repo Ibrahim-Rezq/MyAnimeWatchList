@@ -1,13 +1,17 @@
 .card {
-    width: 360px;
-    text-align: center;
-    margin: auto;
+  width: 360px;
+  text-align: center;
+  margin: auto;
+  background-color: var(--card-background-color);
+  padding: 1.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s;
 }
 .cardHead {
-    margin: 0;
+  margin: 0;
 }
 .cardBody {
 }
 .cardBody p {
-    opacity: 0.8;
+  opacity: 0.8;
 }
