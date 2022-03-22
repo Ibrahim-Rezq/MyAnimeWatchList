@@ -1,33 +1,56 @@
-import Image from 'next/image';
-import styles from '../css/Card.module.css';
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from '../css/Card.module.css'
 
 const Card = ({ anime }) => {
-  const { images, title, synopsis, url } = anime;
-  return (
-    <>
-      <section>
-        <section className={styles.card}>
-          <section className={styles.cardHead}>
-            <a href={url} target='_blank'>
-              <Image
-                src={images.jpg.image_url}
-                width='128'
-                height='179'
-                alt='hi'
-              />
-            </a>
-          </section>
-          <section className={styles.cardBody}>
-            <h4>{title}</h4>
-            <p>
-              {(synopsis && synopsis.slice(0, 150)) || 'No discription found'}
-              ...
-            </p>
-          </section>
-        </section>
-      </section>
-    </>
-  );
-};
+    console.log(anime)
+    const { images, title, synopsis, rank, score, mal_id } = anime
+    console.log(mal_id)
+    return (
+        <>
+            <section>
+                <article className={styles.card}>
+                    <Link href={`/Anime/AnimeInfo/${mal_id}`}>
+                        <a>
+                            <figure>
+                                <Image
+                                    src={images.jpg.image_url}
+                                    width='256'
+                                    height='358'
+                                    alt='hi'
+                                />
+                                <figcaption>
+                                    {title.slice(0, 25)}
+                                    {title.length > 26 && '...'}
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </Link>
+                    <footer className={styles.cardBody}>
+                        <section>
+                            <h5>
+                                Rank:
+                                <span style={{ color: 'var(--primary)' }}>
+                                    {' '}
+                                    {rank || 'Unranked'}
+                                </span>{' '}
+                                Score:
+                                <span style={{ color: 'var(--primary)' }}>
+                                    {' '}
+                                    {score || 'UnScored'}/10
+                                </span>
+                            </h5>
+                            <p>
+                                {(synopsis && synopsis.slice(0, 150)) ||
+                                    'No discription found'}
+                                {synopsis && synopsis.length > 150 && '...'}
+                            </p>
+                        </section>
+                    </footer>
+                </article>
+            </section>
+        </>
+    )
+}
 
-export default Card;
+export default Card
