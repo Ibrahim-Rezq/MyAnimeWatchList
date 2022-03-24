@@ -1,0 +1,37 @@
+.infoPage {
+  margin: 0;
+  padding-top: 1rem;
+  text-align: center;
+}
+.infoPage footer {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, 340px);
+}
+.sideBar {
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 0.25rem;
+}
+.sideBar article {
+  padding: 1rem 1.5rem;
+}
+.sideBar article footer {
+  padding: 1rem 1.5rem;
+}
+.sideBar li {
+  list-style: none;
+}
+.main {
+  padding: 2rem 0rem;
+}
+.main ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}

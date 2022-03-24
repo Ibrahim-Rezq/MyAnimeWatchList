@@ -1,91 +1,145 @@
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Head from 'next/head';
+import { useState, useEffect } from 'react';
+import Nav from '../../../components/Nav';
+import styles from '../../../css/AnimeInfo.module.css';
+
 const AnimeInfo = () => {
-    const router = useRouter()
-    const { id } = router.query
-    const [animeData, setAnimeData] = useState('')
-    useEffect(() => {
-        getData(id)
-    }, [])
+  const router = useRouter();
+  const { id } = router.query;
+  const [animeData, setAnimeData] = useState('');
+  useEffect(() => {
+    getData(id);
+  }, []);
 
-    const getData = async (value) => {
-        try {
-            if (value) {
-                const res = await fetch(
-                    `https://api.jikan.moe/v4/anime/${value}`
-                )
-                const data = await res.json()
-                setAnimeData(data.data)
-            }
-        } catch (e) {
-            console.error(e)
-        }
+  const getData = async (value) => {
+    try {
+      if (value) {
+        const res = await fetch(`https://api.jikan.moe/v4/anime/${value}`);
+        const data = await res.json();
+        setAnimeData(data.data);
+      }
+    } catch (e) {
+      console.error(e);
     }
-    const {
-        title,
-        status,
-        rank,
-        score,
-        type,
-        year,
-        rating,
-        aired,
-        title_japanese,
-        images,
-    } = animeData
-    console.log(animeData)
-    if (!animeData)
-        return (
-            <>
-                <h1>Nothing Found</h1>
-            </>
-        )
-    else
-        return (
-            <>
-                <article>
-                    <h3>{animeData.title}</h3>
-                    <Image
-                        src={images.jpg.image_url}
-                        width={256}
-                        height={256}
-                    ></Image>
-                    <p>
-                        name {title} / {title_japanese}
-                    </p>
-                    <p>
-                        Started aring:
-                        <span style={{ color: 'var(--primary)' }}>
-                            {' '}
-                            {aired.from.slice(0, 10) || 'UnKnown'}
-                        </span>{' '}
-                    </p>
-                    <p>
-                        Status:
-                        <span style={{ color: 'var(--primary)' }}>
-                            {' '}
-                            {status || 'UnKnown'}
-                        </span>{' '}
-                    </p>
-                    <p>
-                        <h5>
-                            Rank:
-                            <span style={{ color: 'var(--primary)' }}>
-                                {' '}
-                                {rank || 'Unranked'}
-                            </span>{' '}
-                            Score:
-                            <span style={{ color: 'var(--primary)' }}>
-                                {' '}
-                                {score || 'UnScored'}/10
-                            </span>
-                        </h5>
-                    </p>
+  };
+  const {
+    title,
+    status,
+    rank,
+    score,
+    synopsis,
+    type,
+    background,
+    year,
+    url,
+    rating,
+    aired,
+    title_japanese,
+    images,
+    trailer,
+  } = animeData;
+  console.log(animeData);
+  if (!animeData)
+    return (
+      <>
+        <h1>Nothing Found</h1>
+      </>
+    );
+  else
+    return (
+      <>
+        <Head>
+          <title>{title}</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
 
-                    <p>Year :{year || 'Unknown'}</p>
-                </article>
-            </>
-        )
-}
-export default AnimeInfo
+        <Nav />
+        <section>
+          <article className={styles.infoPage}>
+            <section className={styles.sideBar}>
+              <article>
+                <figure>
+                  <Image
+                    src={images.jpg.image_url}
+                    width='256'
+                    height='358'></Image>
+                  <figcaption>
+                    {title} <br /> {title_japanese}
+                  </figcaption>
+                </figure>
+                <footer>
+                  <span>
+                    Rank:
+                    <span style={{ color: 'var(--primary)' }}>
+                      {' '}
+                      {rank || 'Unranked'}
+                    </span>{' '}
+                    Score:
+                    <span style={{ color: 'var(--primary)' }}>
+                      {' '}
+                      {score || 'UnScored'}/10
+                    </span>
+                  </span>
+                </footer>
+              </article>
+              <ul>
+                <li>
+                  <iframe
+                    style={{ width: '360px', height: '210px' }}
+                    src={trailer.embed_url}
+                    frameborder='0'
+                    allowfullscreen
+                    name='iframe_video1'></iframe>
+                </li>
+                <li>
+                  <span>
+                    Started aring:
+                    <span style={{ color: 'var(--primary)' }}>
+                      {' '}
+                      {aired.from.slice(0, 10) || 'UnKnown'}
+                    </span>{' '}
+                  </span>
+                </li>
+                <li>
+                  <p>
+                    Status:
+                    <span style={{ color: 'var(--primary)' }}>
+                      {' '}
+                      {status || 'UnKnown'}
+                    </span>{' '}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <a href={url} target='_blank'>
+                      Got To page
+                    </a>
+                  </p>
+                </li>
+                <li>
+                  <p>Year :{year || 'Unknown'}</p>
+                </li>
+                <li>
+                  <button>Add to favouiret</button>
+                </li>
+              </ul>
+            </section>
+
+            <section className={styles.main}>
+              <p>
+                <hr />
+                <strong>Synopsis</strong> :<br />
+                {synopsis || 'Unknown'}
+              </p>
+              <hr />
+              <h4>BackGround</h4>
+              <p>{background || 'Unknown'}</p>
+            </section>
+          </article>
+        </section>
+      </>
+    );
+};
+export default AnimeInfo;
