@@ -6,11 +6,10 @@ import Footer from '../components/Footer';
 const AnimeTop = ({ data }) => {
   return (
     <>
-      <div>
-        <Nav />
+      <Nav />
+      <section className='main'>
         <AnimeShelf data={data.data} />
-      </div>
-      <Footer />
+      </section>
     </>
   );
 };

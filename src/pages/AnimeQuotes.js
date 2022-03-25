@@ -8,25 +8,27 @@ const AnimeQuotes = ({ quoteData }) => {
   return (
     <>
       <Nav />
-      <section
-        className='container'
-        style={{
-          height: '75vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-        }}>
-        <blockquote>
-          "{quote}"
-          <footer>
-            <cite>
-              By: {character}, From: {anime}
-            </cite>
-          </footer>
-        </blockquote>
-        <Link href='/AnimeQuotes'>
-          <a role='button'>AnotherQuotes</a>
-        </Link>
+      <section className='main'>
+        <section
+          className='container'
+          style={{
+            height: '75vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+          }}>
+          <blockquote>
+            "{quote}"
+            <footer>
+              <cite>
+                By: {character}, From: {anime}
+              </cite>
+            </footer>
+          </blockquote>
+          <Link href='/AnimeQuotes'>
+            <a role='button'>AnotherQuotes</a>
+          </Link>
+        </section>
       </section>
       <Footer />
     </>

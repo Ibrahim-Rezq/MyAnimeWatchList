@@ -44,7 +44,9 @@ const AnimeInfo = () => {
   if (!animeData)
     return (
       <>
-        <h1>Nothing Found</h1>
+        <section className='main'>
+          <h1>...loading</h1>
+        </section>
       </>
     );
   else
@@ -56,8 +58,8 @@ const AnimeInfo = () => {
         </Head>
 
         <Nav />
-        <section>
-          <article className={styles.infoPage}>
+        <section className='main'>
+          <section className={styles.infoPage}>
             <section className={styles.sideBar}>
               <article>
                 <figure>
@@ -87,7 +89,7 @@ const AnimeInfo = () => {
               <ul>
                 <li>
                   <iframe
-                    style={{ width: '360px', height: '210px' }}
+                    style={{ width: '100%', height: '210px' }}
                     src={trailer.embed_url}
                     frameborder='0'
                     allowfullscreen
@@ -137,7 +139,7 @@ const AnimeInfo = () => {
               <h4>BackGround</h4>
               <p>{background || 'Unknown'}</p>
             </section>
-          </article>
+          </section>
         </section>
       </>
     );

@@ -43,15 +43,15 @@ const Card = ({ anime }) => {
                 {(synopsis && synopsis.slice(0, 150)) || 'No discription found'}
                 {synopsis && synopsis.length > 150 && '...'}
               </p>
-              <button
-                onClick={() => {
-                  post(anime);
-                }}>
-                Add To Favorite
-              </button>
             </section>
           </footer>
         </article>
+        <button
+          onClick={() => {
+            post(anime);
+          }}>
+          Add To Favorite
+        </button>
       </section>
     </>
   );

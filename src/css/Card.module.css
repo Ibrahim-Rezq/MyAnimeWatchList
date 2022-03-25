@@ -1,21 +1,25 @@
 .card {
-    width: 360px;
-    text-align: center;
-    margin: auto;
-    background-color: var(--card-background-color);
-    padding: 1.5rem 1rem;
-    border-radius: 0.25rem;
-    transition: all 0.3s;
+  min-width: 240px;
+  text-align: center;
+  margin: auto;
+  background-color: var(--card-background-color);
+  padding: 1.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s;
 }
 .cardHead {
-    width: 360px;
-    margin: 0;
+  min-width: 240px;
 }
 .cardBody {
-    margin-left: -1rem;
-    width: 360px;
-    height: 360px;
+  min-width: 240px;
+  height: 240px;
 }
 .cardBody p {
-    opacity: 0.8;
+  opacity: 0.8;
+}
+@media (min-width: 768px) {
+  .cardBody {
+    min-width: 240px;
+    height: 360px;
+  }
 }

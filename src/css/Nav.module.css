@@ -1,0 +1,28 @@
+.navLinks {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 3;
+  width: 100%;
+  justify-content: space-around;
+  background-color: var(--background-color);
+}
+.navLinks li {
+  color: var(--primary);
+}
+.toTop {
+  border: none;
+  font-size: 1.5rem;
+  width: 3rem;
+  margin: 0;
+  position: fixed;
+  bottom: 5%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  transition: 0.3s;
+  z-index: 3;
+}
+.toTop:hover {
+  transform: translate(-50%, -60%);
+}
