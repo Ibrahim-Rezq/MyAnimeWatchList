@@ -10,8 +10,10 @@ export default async function handler(req, res) {
         if (data && data.length > 0) {
             res.status(200).json({ msg: 'Ok' })
         } else {
-            db.collection('animeList').insertOne(req.body.anime)
-            res.status(200).json({ msg: 'Ok' })
+            const response = await db
+                .collection('animeList')
+                .insertOne(req.body.anime)
+            res.status(200).json(response)
         }
     } else {
         const data = await db
