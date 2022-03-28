@@ -1,14 +1,14 @@
-import React from 'react';
-import SearchBar from '../components/SearchBar';
-import Nav from '../components/Nav';
+import React from 'react'
+import SearchBar from '../components/SearchBar'
+import Nav from '../components/Nav'
 
 const Search = () => {
-  return (
-    <>
-      <Nav />
-      <SearchBar />
-    </>
-  );
-};
+    return (
+        <>
+            <Nav PageName={'Search'} />
+            <SearchBar />
+        </>
+    )
+}
 
-export default Search;
+export default Search
