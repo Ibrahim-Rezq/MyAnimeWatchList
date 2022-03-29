@@ -1,13 +1,13 @@
 import SignUp from '../../components/SignUp'
+import Nav from '../../components/Nav'
+
 const register = () => {
     return (
         <>
-            <article>
-                <section className='container'>
-                    <h2>LoginPage</h2>
-                    <SignUp />
-                </section>
-            </article>
+            <Nav PageName={'Register'} />
+            <section className='container'>
+                <SignUp />
+            </section>
         </>
     )
 }

@@ -10,16 +10,30 @@ const SignUp = () => {
                             e.preventDefault()
                         }}
                     >
+                        <h2>Sign Up</h2>
+                        <label>Name</label>
+                        <input
+                            aria-invalid={false}
+                            type='name'
+                            name='name'
+                            id='formName'
+                        />
                         <label>Email</label>
-                        <input type='email' name='email' id='formEmail' />
+                        <input
+                            aria-invalid={false}
+                            type='email'
+                            name='email'
+                            id='formEmail'
+                        />
                         <label>Password</label>
                         <input
+                            aria-invalid={false}
                             type='password'
                             name='password'
                             id='formPassword'
                         />
                         <button type='submit' className='outline'>
-                            Login
+                            SignUp
                         </button>
                     </form>
                 </article>

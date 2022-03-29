@@ -1,14 +1,13 @@
 import SignIn from '../../components/SignIn'
+import Nav from '../../components/Nav'
 
 const Login = () => {
     return (
         <>
-            <article>
-                <section className='container'>
-                    <h2>LoginPage</h2>
-                    <SignIn />
-                </section>
-            </article>
+            <Nav PageName={'Login'} />
+            <section className='container'>
+                <SignIn />
+            </section>
         </>
     )
 }

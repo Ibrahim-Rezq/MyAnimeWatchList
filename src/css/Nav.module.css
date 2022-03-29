@@ -1,28 +1,35 @@
 .navLinks {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 3;
-  width: 100%;
-  justify-content: space-around;
-  background-color: var(--background-color);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 3;
+    width: 100%;
+    justify-content: space-around;
+    background-color: var(--primary-focus);
+    border-radius: 1rem 1rem 0rem 0rem;
 }
 .navLinks li {
-  color: var(--primary);
+}
+.active {
+    background-color: var(--primary-focus);
+    border: solid var(--background-color) 10px;
+    border-top: none;
+    border-radius: 1rem;
+    transform: translate(0%, -40%);
 }
 .toTop {
-  border: none;
-  font-size: 1.5rem;
-  width: 3rem;
-  margin: 0;
-  position: fixed;
-  bottom: 5%;
-  right: 0;
-  transform: translate(-50%, -50%);
-  transition: 0.3s;
-  z-index: 3;
+    border: none;
+    font-size: 1.5rem;
+    width: 3rem;
+    margin: 0;
+    position: fixed;
+    bottom: 5%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+    z-index: 3;
 }
 .toTop:hover {
-  transform: translate(-50%, -60%);
+    transform: translate(-50%, -60%);
 }

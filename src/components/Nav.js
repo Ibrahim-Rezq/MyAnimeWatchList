@@ -49,7 +49,9 @@ const Nav = ({ PageName }) => {
                             key={i}
                             {...link}
                             nameClass={
-                                router.pathname === link.path ? 'active' : ''
+                                router.pathname === link.path
+                                    ? styles.active
+                                    : ''
                             }
                         />
                     )

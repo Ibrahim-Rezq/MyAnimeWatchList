@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 const Footer = () => {
-  return (
-    <>
-      <footer>Made By Ibrahim_Amin</footer>
-    </>
-  );
-};
+    return (
+        <>
+            <section style={{ textAlign: 'center' }}>
+                Made By Ibrahim_Amin
+            </section>
+        </>
+    )
+}
 
-export default Footer;
+export default Footer

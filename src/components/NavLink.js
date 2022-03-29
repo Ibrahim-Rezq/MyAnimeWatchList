@@ -3,15 +3,9 @@ import Link from 'next/link'
 const NavLink = ({ name, path, nameClass }) => {
     return (
         <>
-            <li>
+            <li className={nameClass}>
                 <Link href={path}>
-                    <a
-                        className={
-                            nameClass === 'active' ? 'contrast' : 'secondary'
-                        }
-                    >
-                        {name}
-                    </a>
+                    <a>{name}</a>
                 </Link>
             </li>
         </>
