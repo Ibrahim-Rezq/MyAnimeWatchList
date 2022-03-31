@@ -33,7 +33,7 @@ const Nav = ({ PageName }) => {
     ]
 
     return (
-        <nav className='container' style={{}}>
+        <nav className={'container ' + styles.navLinks} style={{}}>
             <ul>
                 <li>
                     <Link href='/'>
