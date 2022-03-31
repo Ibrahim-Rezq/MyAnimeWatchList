@@ -1,7 +1,6 @@
 import { ClientSession, MongoClient } from 'mongodb'
 
 const { MONGODB_DB, MONGODB_URI } = process.env
-console.log(process.env.local)
 if (!MONGODB_URI) throw new Error('Define MONGODB_URI in .env.local')
 if (!MONGODB_DB) throw new Error('Define MONGODB_DB in .env.local')
 

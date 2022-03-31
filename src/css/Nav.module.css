@@ -1,3 +1,11 @@
+.nav {
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    background-color: var(--background-color);
+    border-radius: 0 0 1rem 1rem;
+}
 .navLinks {
     position: fixed;
     bottom: 0;
@@ -6,17 +14,19 @@
     z-index: 3;
     width: 100%;
     justify-content: space-around;
-    background-color: var(--primary-focus);
+    background-color: var(--background-color);
     border-radius: 1rem 1rem 0rem 0rem;
 }
 .navLinks li {
+    /* background-color: red; */
 }
 .active {
-    background-color: var(--primary-focus);
+    /* background-color: var(--primary-focus);
     border: solid var(--background-color) 10px;
     border-top: none;
-    border-radius: 1rem;
-    transform: translate(0%, -40%);
+    border-right: 50%;
+    border-radius: 1rem 1rem 11rem 11rem;
+    transform: translate(0%, -40%); */
 }
 .toTop {
     border: none;

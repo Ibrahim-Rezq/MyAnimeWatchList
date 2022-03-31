@@ -27,12 +27,13 @@ const Nav = ({ PageName }) => {
         { name: 'Home', path: '/' },
         { name: 'Search', path: '/search' },
         { name: 'AnimeQuotes', path: '/animeQuotes' },
+        { name: 'Register', path: '/account/register' },
         { name: 'Login', path: '/account/login' },
         { name: 'AnimeTop', path: '/animeTop' },
     ]
 
     return (
-        <nav className='container' style={{ justifyContent: 'center' }}>
+        <nav className='container' style={{}}>
             <ul>
                 <li>
                     <Link href='/'>

@@ -4,7 +4,9 @@
   "private": false,
   "dependencies": {
     "@picocss/pico": "^1.5.0",
+    "cookie": "^0.4.2",
     "framer-motion": "^6.2.8",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongodb": "^4.4.1",
     "next": "^12.1.0",

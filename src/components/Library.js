@@ -10,7 +10,7 @@ const Library = () => {
 
     const getData = async () => {
         try {
-            const data = await getAll()
+            const data = await getAll('hima')
             setData(data)
         } catch (e) {
             console.error(e)

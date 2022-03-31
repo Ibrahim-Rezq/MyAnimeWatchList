@@ -1,6 +1,20 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 
 const SignUp = () => {
+    const [account, setAccount] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setAccount({ ...account, [name]: value })
+    }
+    useEffect(() => {
+        console.log(account)
+    }, [account])
+
     return (
         <>
             <section className='container'>
@@ -17,6 +31,8 @@ const SignUp = () => {
                             type='name'
                             name='name'
                             id='formName'
+                            value={account.name}
+                            onChange={handleChange}
                         />
                         <label>Email</label>
                         <input
@@ -24,6 +40,8 @@ const SignUp = () => {
                             type='email'
                             name='email'
                             id='formEmail'
+                            value={account.email}
+                            onChange={handleChange}
                         />
                         <label>Password</label>
                         <input
@@ -31,6 +49,8 @@ const SignUp = () => {
                             type='password'
                             name='password'
                             id='formPassword'
+                            value={account.password}
+                            onChange={handleChange}
                         />
                         <button type='submit' className='outline'>
                             SignUp
