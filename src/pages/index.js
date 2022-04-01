@@ -1,6 +1,5 @@
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import SearchBar from '../components/SearchBar'
 import Library from '../components/Library'
 import Head from 'next/head'
 

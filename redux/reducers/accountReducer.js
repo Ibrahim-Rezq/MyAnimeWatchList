@@ -1,14 +1,17 @@
-import * as t from '../actions/types';
+import * as t from '../actions/types'
 
-const accountReducer = (state = 0, action) => {
-  switch (action.type) {
-    case t.SIGN_IN:
-      console.log('SIGNIN');
-      return state;
+const accountReducer = (
+    state = { user: 'gest', isSignedIn: false },
+    { type, payload }
+) => {
+    switch (type) {
+        case t.SIGN_IN:
+            return { ...state, user: payload, isSignedIn: true }
+        case t.SIGN_OUT:
+            return { ...state, user: payload, isSignedIn: false }
 
-    default:
-      console.log('default');
-      return state;
-  }
-};
-export default accountReducer;
+        default:
+            return state
+    }
+}
+export default accountReducer

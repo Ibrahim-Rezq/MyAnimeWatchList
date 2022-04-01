@@ -1,13 +1,35 @@
 import Link from 'next/link'
 
-const NavLink = ({ name, path, nameClass }) => {
+const NavLink = (props) => {
+    const { name, path, nameClass, protectedLink, protection } = props
+    if (!protectedLink)
+        return (
+            <>
+                <li className={nameClass}>
+                    <Link href={path}>
+                        <a>{name}</a>
+                    </Link>
+                </li>
+            </>
+        )
+    else
+        return (
+            <>
+                <NavLinkProtected {...props} />
+            </>
+        )
+}
+const NavLinkProtected = (props) => {
+    const { name, path, nameClass, protection } = props
     return (
         <>
-            <li className={nameClass}>
-                <Link href={path}>
-                    <a>{name}</a>
-                </Link>
-            </li>
+            {protection || (
+                <li className={nameClass}>
+                    <Link href={protection ? '/' : path}>
+                        <a>{name}</a>
+                    </Link>
+                </li>
+            )}
         </>
     )
 }

@@ -1,7 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../../redux/actions/actionCreator'
+import { useRouter } from 'next/router'
 
 const SignUp = () => {
-    const [account, setAccount] = useState({
+    const dispatch = useDispatch()
+    const { account } = useSelector((state) => state)
+    const router = useRouter()
+
+    if (account.isSignedIn) {
+        router.replace('/')
+    }
+
+    const [userAccount, setUserAccount] = useState({
         name: '',
         email: '',
         password: '',
@@ -9,11 +20,11 @@ const SignUp = () => {
     const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
-        setAccount({ ...account, [name]: value })
+        setUserAccount({ ...userAccount, [name]: value })
     }
     useEffect(() => {
-        console.log(account)
-    }, [account])
+        console.log(userAccount)
+    }, [userAccount])
 
     return (
         <>
@@ -31,7 +42,7 @@ const SignUp = () => {
                             type='name'
                             name='name'
                             id='formName'
-                            value={account.name}
+                            value={userAccount.name}
                             onChange={handleChange}
                         />
                         <label>Email</label>
@@ -40,7 +51,7 @@ const SignUp = () => {
                             type='email'
                             name='email'
                             id='formEmail'
-                            value={account.email}
+                            value={userAccount.email}
                             onChange={handleChange}
                         />
                         <label>Password</label>
@@ -49,7 +60,7 @@ const SignUp = () => {
                             type='password'
                             name='password'
                             id='formPassword'
-                            value={account.password}
+                            value={userAccount.password}
                             onChange={handleChange}
                         />
                         <button type='submit' className='outline'>

@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 import styles from '../css/Card.module.css'
 import { post } from '../utils/DataStoreAPI'
 
 const Card = ({ anime }) => {
+    const { account } = useSelector((state) => state)
     const { images, title, synopsis, rank, score, mal_id } = anime
     return (
         <>
@@ -49,7 +51,7 @@ const Card = ({ anime }) => {
                 </article>
                 <button
                     onClick={() => {
-                        post(anime)
+                        post(anime, account.user)
                     }}
                 >
                     Add To Favorite
