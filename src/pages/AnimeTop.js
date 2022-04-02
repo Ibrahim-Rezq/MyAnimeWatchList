@@ -2,14 +2,20 @@ import React from 'react'
 import AnimeShelf from '../components/AnimeShelf'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Head from 'next/head'
 
 const AnimeTop = ({ data }) => {
     return (
         <>
-            <Nav PageName={'Anime Top'} />
+            <Head>
+                <title>Top Anime</title>
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <Nav />
             <section className='main'>
                 <AnimeShelf data={data.data} />
             </section>
+            <Footer />
         </>
     )
 }

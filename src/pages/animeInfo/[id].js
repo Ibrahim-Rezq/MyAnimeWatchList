@@ -59,7 +59,7 @@ const AnimeInfo = () => {
                     <link rel='icon' href='/favicon.ico' />
                 </Head>
 
-                <Nav PageName={title} />
+                <Nav />
                 <section className='main'>
                     <section className={styles.infoPage}>
                         <section className={styles.sideBar}>

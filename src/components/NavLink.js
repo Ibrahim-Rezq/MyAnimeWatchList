@@ -1,13 +1,15 @@
 import Link from 'next/link'
 
 const NavLink = (props) => {
-    const { name, path, nameClass, protectedLink, protection } = props
+    const { name, path, nameClass, protectedLink, protection, children } = props
     if (!protectedLink)
         return (
             <>
                 <li className={nameClass}>
                     <Link href={path}>
-                        <a>{name}</a>
+                        <a>
+                            {children} {name}
+                        </a>
                     </Link>
                 </li>
             </>
@@ -15,23 +17,17 @@ const NavLink = (props) => {
     else
         return (
             <>
-                <NavLinkProtected {...props} />
+                {protection || (
+                    <li className={nameClass}>
+                        <Link href={protection ? '/' : path}>
+                            <a>
+                                {children} {name}
+                            </a>
+                        </Link>
+                    </li>
+                )}
             </>
         )
-}
-const NavLinkProtected = (props) => {
-    const { name, path, nameClass, protection } = props
-    return (
-        <>
-            {protection || (
-                <li className={nameClass}>
-                    <Link href={protection ? '/' : path}>
-                        <a>{name}</a>
-                    </Link>
-                </li>
-            )}
-        </>
-    )
 }
 
 export default NavLink

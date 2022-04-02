@@ -10,14 +10,10 @@ const HomePage = () => {
                 <title>My Anime WatchList</title>
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-
-            <div style={{ textAlign: 'center' }}>
-                <Nav PageName={'Anime Watch List'} />
-
-                <main className='container'>
-                    <Library />
-                </main>
-            </div>
+            <Nav />
+            <main className='container main'>
+                <Library />
+            </main>
             <Footer />
         </>
     )

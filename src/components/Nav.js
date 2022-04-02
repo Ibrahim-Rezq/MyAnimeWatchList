@@ -11,8 +11,17 @@ import * as actions from '../../redux/actions/actionCreator'
 
 import NavLink from './NavLink'
 import Modal from '../utils/Modal'
+import {
+    GoSignIn,
+    GoSignOut,
+    GoHome,
+    GoSearch,
+    GoQuote,
+    GoListOrdered,
+} from 'react-icons/go'
+import { MdOutlineAccountCircle } from 'react-icons/md'
 
-const Nav = ({ PageName }) => {
+const Nav = () => {
     const { modal, account } = useSelector((state) => state)
     const dispatch = useDispatch()
     const router = useRouter()
@@ -24,24 +33,52 @@ const Nav = ({ PageName }) => {
         })
     }
     const [bttb, setBttb] = useState(false)
+    const [navToggeled, setNavToggeled] = useState(false)
     const buttonToggel = () => {
         if (window.scrollY > 1000) setBttb(true)
         else setBttb(false)
     }
+    const navToggel = () => {
+        if (window.innerWidth <= 768) setNavToggeled(true)
+        else setNavToggeled(false)
+    }
     useEffect(() => {
         window.addEventListener('scroll', buttonToggel)
+        window.addEventListener('resize', navToggel)
         return () => {
             window.removeEventListener('scroll', buttonToggel)
+            window.removeEventListener('resize', navToggel)
         }
     }, [])
 
+    const protLinks = [
+        {
+            name: 'Register',
+            path: '/account/register',
+            protectedLink: true,
+            icon: <GoSignIn />,
+        },
+        {
+            name: 'Login',
+            path: '/account/login',
+            protectedLink: true,
+            icon: <GoSignIn />,
+        },
+    ]
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Search', path: '/search' },
-        { name: 'AnimeQuotes', path: '/animeQuotes' },
-        { name: 'Register', path: '/account/register', protectedLink: true },
-        { name: 'Login', path: '/account/login', protectedLink: true },
-        { name: 'AnimeTop', path: '/animeTop' },
+        {
+            name: 'Home',
+            path: '/',
+            icon: <GoHome />,
+        },
+        { name: 'Search', path: '/search', icon: <GoSearch /> },
+        {
+            name: 'AnimeQuotes',
+            path: '/animeQuotes',
+            icon: <GoQuote />,
+        },
+
+        { name: 'AnimeTop', path: '/animeTop', icon: <GoListOrdered /> },
     ]
 
     const handelLogout = async (e) => {
@@ -58,37 +95,79 @@ const Nav = ({ PageName }) => {
                 <li>
                     <Link href='/'>
                         <a style={{ background: 'none' }}>
-                            <strong>{PageName}</strong>
+                            <strong>Anime Watch List</strong>
                         </a>
                     </Link>
                 </li>
-                <li>
-                    <strong>{account.user}</strong>
-                </li>
-                {account.isSignedIn && (
-                    <li>
-                        <button onClick={handelLogout} className='outline'>
-                            LogOut
-                        </button>
-                    </li>
-                )}
             </ul>
-            <ul className={styles.navLinks}>
+            <ul className={navToggeled ? styles.navLinks : ''}>
                 {navLinks.map((link, i) => {
                     return (
-                        <NavLink
-                            key={i}
-                            {...link}
-                            protection={account.isSignedIn}
-                            nameClass={
-                                router.pathname === link.path
-                                    ? styles.active
-                                    : ''
-                            }
-                        />
+                        <li key={i} className={link.nameClass}>
+                            <Link href={link.path}>
+                                <a>
+                                    {link.icon} {link.name}
+                                </a>
+                            </Link>
+                        </li>
                     )
                 })}
             </ul>
+            <ul>
+                <li>
+                    <details role='list'>
+                        <summary aria-haspopup='listbox'>
+                            {account.isSignedIn ? (
+                                <>
+                                    <strong>
+                                        <MdOutlineAccountCircle />{' '}
+                                        {account.user}
+                                    </strong>
+                                </>
+                            ) : (
+                                <strong>Acccount</strong>
+                            )}
+                        </summary>
+                        <ul role='listbox'>
+                            {!account.isSignedIn ? (
+                                <>
+                                    {protLinks.map((link, i) => {
+                                        return (
+                                            <li
+                                                key={i}
+                                                className={link.nameClass}
+                                            >
+                                                <Link
+                                                    href={
+                                                        link.protection
+                                                            ? '/'
+                                                            : link.path
+                                                    }
+                                                >
+                                                    <a>
+                                                        {link.icon} {link.name}
+                                                    </a>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
+                                </>
+                            ) : (
+                                <li>
+                                    <a
+                                        onClick={handelLogout}
+                                        className='outline'
+                                    >
+                                        <GoSignOut />
+                                        LogOut
+                                    </a>
+                                </li>
+                            )}
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+
             {bttb && (
                 <button className={styles.toTop} onClick={scrollToTop}>
                     {' '}

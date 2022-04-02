@@ -1,13 +1,18 @@
 import React from 'react'
 import Nav from '../components/Nav'
 import Link from 'next/link'
+import Head from 'next/head'
 import Footer from '../components/Footer'
 
 const AnimeQuotes = ({ quoteData }) => {
     const { anime, character, quote } = quoteData
     return (
         <>
-            <Nav PageName={'Anime Quotes'} />
+            <Head>
+                <title>Anime Quotes</title>
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
+            <Nav />
             <section className='main'>
                 <section
                     className='container'
