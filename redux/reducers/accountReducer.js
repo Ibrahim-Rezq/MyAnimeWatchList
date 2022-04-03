@@ -7,6 +7,8 @@ const accountReducer = (
     switch (type) {
         case t.SIGN_IN:
             return { ...state, user: payload, isSignedIn: true }
+        case t.SIGN_UP:
+            return { ...state, user: payload, isSignedIn: true }
         case t.SIGN_OUT:
             return { ...state, user: payload, isSignedIn: false }
 

@@ -1,7 +1,7 @@
 import AnimeShelf from './AnimeShelf'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { getAll } from '../utils/DataStoreAPI'
+import { getAll } from '../utils/App/DataStoreAPI'
 import { useSelector } from 'react-redux'
 
 const Library = () => {

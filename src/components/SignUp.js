@@ -13,7 +13,7 @@ const SignUp = () => {
     }
 
     const [userAccount, setUserAccount] = useState({
-        name: '',
+        username: '',
         email: '',
         password: '',
     })
@@ -25,24 +25,24 @@ const SignUp = () => {
     useEffect(() => {
         console.log(userAccount)
     }, [userAccount])
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        dispatch(actions.SignUp(userAccount))
+    }
 
     return (
         <>
             <section className='container'>
                 <article>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                        }}
-                    >
+                    <form onSubmit={handleSubmit}>
                         <h2>Sign Up</h2>
-                        <label>Name</label>
+                        <label>username</label>
                         <input
                             aria-invalid={false}
-                            type='name'
-                            name='name'
-                            id='formName'
-                            value={userAccount.name}
+                            type='text'
+                            name='username'
+                            id='formUsername'
+                            value={userAccount.username}
                             onChange={handleChange}
                         />
                         <label>Email</label>

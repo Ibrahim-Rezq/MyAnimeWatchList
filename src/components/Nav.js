@@ -10,7 +10,7 @@ import { closeModal } from '../../redux/actions/actionCreator'
 import * as actions from '../../redux/actions/actionCreator'
 
 import NavLink from './NavLink'
-import Modal from '../utils/Modal'
+import Modal from '../utils/App/Modal'
 import {
     GoSignIn,
     GoSignOut,

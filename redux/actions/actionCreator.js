@@ -23,11 +23,10 @@ export const SignIn = (account) => {
                 body: JSON.stringify(account),
             })
             const data = await response.json()
-            console.log(data)
-            if (data.user) {
+            if (data.username) {
                 dispatch({
                     type: type.SIGN_IN,
-                    payload: await data.user,
+                    payload: await data.username,
                 })
                 dispatch({
                     type: type.OPEN_MODAL,
@@ -41,6 +40,36 @@ export const SignIn = (account) => {
         } catch (e) {}
     }
 }
+
+export const SignUp = (account) => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(account),
+            })
+            const data = await response.json()
+            if (data.username) {
+                dispatch({
+                    type: type.SIGN_UP,
+                    payload: await data.username,
+                })
+                dispatch({
+                    type: type.OPEN_MODAL,
+                    payload: await data.msg,
+                })
+            } else
+                dispatch({
+                    type: type.OPEN_MODAL,
+                    payload: await data.msg,
+                })
+        } catch (e) {}
+    }
+}
+
 export const signOut = () => {
     return async (dispatch, getState) => {
         try {

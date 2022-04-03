@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import styles from '../css/Card.module.css'
-import { post } from '../utils/DataStoreAPI'
+import { post } from '../utils/App/DataStoreAPI'
 
 const Card = ({ anime }) => {
     const { account } = useSelector((state) => state)
