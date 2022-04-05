@@ -13,7 +13,7 @@ const Library = () => {
 
     const getData = async () => {
         try {
-            const data = await getAll(account.user)
+            const data = await getAll()
             setData(data)
         } catch (e) {
             console.error(e)

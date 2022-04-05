@@ -19,6 +19,7 @@ export const setUser = async ({ username, email, password }) => {
 }
 export const getCurruntUser = async (token) => {
     return jwt.verify(token, secret, async function (err, decoded) {
+        console.log(decoded)
         const user = await getUser(decoded.email)
         const { db } = await connectToDB()
         const data = await db

@@ -51,7 +51,7 @@ const Card = ({ anime }) => {
                 </article>
                 <button
                     onClick={() => {
-                        post(anime, account.user)
+                        post(anime)
                     }}
                 >
                     Add To Favorite
