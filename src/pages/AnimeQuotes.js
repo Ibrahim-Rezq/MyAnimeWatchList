@@ -5,6 +5,13 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 
 const AnimeQuotes = ({ quoteData }) => {
+    const sectionStyle = {
+        minHeight: 'calc(100vh - 170px)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        margin: '0 auto',
+    }
     const { anime, character, quote } = quoteData
     return (
         <>
@@ -14,15 +21,7 @@ const AnimeQuotes = ({ quoteData }) => {
             </Head>
             <Nav />
             <section className='main'>
-                <section
-                    className='container'
-                    style={{
-                        height: '75vh',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-evenly',
-                    }}
-                >
+                <section className='container' style={sectionStyle}>
                     <blockquote>
                         "{quote}"
                         <footer>

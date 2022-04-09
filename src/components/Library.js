@@ -1,8 +1,11 @@
+// import IsAuth from '../utils/Api/IsAuth'
+// import { getUserAnime } from '../utils/Api/controller/anime'
+
 import AnimeShelf from './AnimeShelf'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { getAll } from '../utils/App/DataStoreAPI'
 import { useSelector } from 'react-redux'
+import { getAll } from '../utils/App/DataStoreAPI'
 
 const Library = () => {
     const { account } = useSelector((state) => state)
@@ -19,7 +22,6 @@ const Library = () => {
             console.error(e)
         }
     }
-
     return (
         <>
             {account.isSignedIn ? (
@@ -39,5 +41,15 @@ const Library = () => {
         </>
     )
 }
+// export async function getServerSideProps() {
+//     const Auth = IsAuth(req)
+//     if (Auth) {
+//         const data = await getUserAnime(Auth)
+//         data && data.length > 0
+//     } else res.status(401).json({ msg: 'OH! NO!' })
+//     return {
+//         props: { data },
+//     }
+// }
 
 export default Library

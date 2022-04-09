@@ -9,16 +9,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { closeModal } from '../../redux/actions/actionCreator'
 import * as actions from '../../redux/actions/actionCreator'
 
-import NavLink from './NavLink'
 import Modal from '../utils/App/Modal'
-import {
-    GoSignIn,
-    GoSignOut,
-    GoHome,
-    GoSearch,
-    GoQuote,
-    GoListOrdered,
-} from 'react-icons/go'
+import { navLinks, protLinks } from '../utils/App/navData'
+import { GoSignOut } from 'react-icons/go'
 import { MdOutlineAccountCircle } from 'react-icons/md'
 
 const Nav = () => {
@@ -51,36 +44,6 @@ const Nav = () => {
         }
     }, [])
 
-    const protLinks = [
-        {
-            name: 'Register',
-            path: '/account/register',
-            protectedLink: true,
-            icon: <GoSignIn />,
-        },
-        {
-            name: 'Login',
-            path: '/account/login',
-            protectedLink: true,
-            icon: <GoSignIn />,
-        },
-    ]
-    const navLinks = [
-        {
-            name: 'Home',
-            path: '/',
-            icon: <GoHome />,
-        },
-        { name: 'Search', path: '/search', icon: <GoSearch /> },
-        {
-            name: 'AnimeQuotes',
-            path: '/animeQuotes',
-            icon: <GoQuote />,
-        },
-
-        { name: 'AnimeTop', path: '/animeTop', icon: <GoListOrdered /> },
-    ]
-
     const handelLogout = async (e) => {
         try {
             e.preventDefault()
@@ -89,6 +52,7 @@ const Nav = () => {
             console.error(e)
         }
     }
+
     return (
         <nav className={'container ' + styles.nav} style={{}}>
             <ul>
