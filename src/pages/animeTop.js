@@ -30,5 +30,5 @@ export async function getStaticProps() {
         console.error(e)
     }
 }
-
+ 
 export default AnimeTop

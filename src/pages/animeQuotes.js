@@ -51,4 +51,5 @@ export async function getServerSideProps() {
         console.error(e)
     }
 }
+
 export default AnimeQuotes
