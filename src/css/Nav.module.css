@@ -5,6 +5,7 @@
     z-index: 101;
     background-color: var(--background-color);
     border-radius: 0 0 1rem 1rem;
+    padding: 0rem 2rem;
 }
 .modal {
     position: fixed;
@@ -14,15 +15,32 @@
     z-index: 1003;
     padding-bottom: 0;
 }
-.navLinks {
-    background-color: red;
+@media (max-width: 768px) {
+    .navLinks {
+        background-color: transparent;
+        position: absolute;
+        bottom: 0vh;
+        left: 0%;
+        transform: translate(-0%, 100%);
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .navLinks li {
+        color: var(--color);
+        background-color: var(--secondary-focus) !important;
+        border-radius: 0rem 1rem 1rem 0rem;
+        padding: 0.5rem 1rem;
+    }
+    .navLinks li a {
+        border-radius: 0rem 1rem 1rem 0rem;
+        padding: 1rem 2rem;
+    }
 }
-.nav li {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: var(--color);
+.navLinks li a {
+    padding: 0.5rem 1rem;
+    background-color: none;
 }
 /*
 .active {

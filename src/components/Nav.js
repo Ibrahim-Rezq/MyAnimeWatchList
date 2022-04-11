@@ -26,21 +26,14 @@ const Nav = () => {
         })
     }
     const [bttb, setBttb] = useState(false)
-    const [navToggeled, setNavToggeled] = useState(false)
     const buttonToggel = () => {
         if (window.scrollY > 1000) setBttb(true)
         else setBttb(false)
     }
-    const navToggel = () => {
-        if (window.innerWidth <= 768) setNavToggeled(true)
-        else setNavToggeled(false)
-    }
     useEffect(() => {
         window.addEventListener('scroll', buttonToggel)
-        window.addEventListener('resize', navToggel)
         return () => {
             window.removeEventListener('scroll', buttonToggel)
-            window.removeEventListener('resize', navToggel)
         }
     }, [])
 
@@ -64,12 +57,12 @@ const Nav = () => {
                     </Link>
                 </li>
             </ul>
-            <ul className={navToggeled ? styles.navLinks : ''}>
+            <ul className={styles.navLinks}>
                 {navLinks.map((link, i) => {
                     return (
                         <li key={i} className={link.nameClass}>
                             <Link href={link.path}>
-                                <a>
+                                <a style={{ background: 'none' }}>
                                     {link.icon} {link.name}
                                 </a>
                             </Link>
@@ -108,7 +101,11 @@ const Nav = () => {
                                                             : link.path
                                                     }
                                                 >
-                                                    <a>
+                                                    <a
+                                                        style={{
+                                                            background: 'none',
+                                                        }}
+                                                    >
                                                         {link.icon} {link.name}
                                                     </a>
                                                 </Link>
