@@ -1,6 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
-import styles from '../css/Nav.module.css'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
+import Container from '@mui/material/Container'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
+import MenuItem from '@mui/material/MenuItem'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -11,31 +22,10 @@ import * as actions from '../../redux/actions/actionCreator'
 
 import Modal from '../utils/App/Modal'
 import { navLinks, protLinks } from '../utils/App/navData'
-import { GoSignOut } from 'react-icons/go'
-import { MdOutlineAccountCircle } from 'react-icons/md'
 
 const Nav = () => {
-    const { modal, account } = useSelector((state) => state)
+    const { account } = useSelector((state) => state)
     const dispatch = useDispatch()
-    const router = useRouter()
-
-    const scrollToTop = () => {
-        window.scroll({
-            top: 0,
-            behavior: 'smooth',
-        })
-    }
-    const [bttb, setBttb] = useState(false)
-    const buttonToggel = () => {
-        if (window.scrollY > 1000) setBttb(true)
-        else setBttb(false)
-    }
-    useEffect(() => {
-        window.addEventListener('scroll', buttonToggel)
-        return () => {
-            window.removeEventListener('scroll', buttonToggel)
-        }
-    }, [])
 
     const handelLogout = async (e) => {
         try {
@@ -45,106 +35,192 @@ const Nav = () => {
             console.error(e)
         }
     }
+    const [anchorElNav, setAnchorElNav] = useState(null)
+    const [anchorElUser, setAnchorElUser] = useState(null)
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget)
+    }
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget)
+    }
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null)
+    }
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null)
+    }
 
     return (
-        <nav className={'container ' + styles.nav} style={{}}>
-            <ul>
-                <li>
+        <AppBar position='sticky'>
+            <Container maxWidth='xl'>
+                <Toolbar disableGutters>
                     <Link href='/'>
-                        <a style={{ background: 'none' }}>
-                            <strong>Anime Watch List</strong>
-                        </a>
+                        <Typography
+                            variant='h6'
+                            noWrap
+                            component='div'
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                cursor: 'pointer',
+                            }}
+                        >
+                            LOGO
+                        </Typography>
                     </Link>
-                </li>
-            </ul>
-            <ul className={styles.navLinks}>
-                {navLinks.map((link, i) => {
-                    return (
-                        <li key={i} className={link.nameClass}>
-                            <Link href={link.path}>
-                                <a style={{ background: 'none' }}>
-                                    {link.icon} {link.name}
-                                </a>
-                            </Link>
-                        </li>
-                    )
-                })}
-            </ul>
-            <ul>
-                <li>
-                    <details role='list'>
-                        <summary aria-haspopup='listbox'>
-                            {account.isSignedIn ? (
-                                <>
-                                    <strong>
-                                        <MdOutlineAccountCircle />{' '}
-                                        {account.user}
-                                    </strong>
-                                </>
-                            ) : (
-                                <strong>Acccount</strong>
-                            )}
-                        </summary>
-                        <ul role='listbox'>
-                            {!account.isSignedIn ? (
-                                <>
-                                    {protLinks.map((link, i) => {
-                                        return (
-                                            <li
-                                                key={i}
-                                                className={link.nameClass}
-                                            >
-                                                <Link
-                                                    href={
-                                                        link.protection
-                                                            ? '/'
-                                                            : link.path
-                                                    }
-                                                >
-                                                    <a
-                                                        style={{
-                                                            background: 'none',
-                                                        }}
-                                                    >
-                                                        {link.icon} {link.name}
-                                                    </a>
-                                                </Link>
-                                            </li>
-                                        )
-                                    })}
-                                </>
-                            ) : (
-                                <li>
-                                    <a
-                                        onClick={handelLogout}
-                                        className='outline'
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'flex', md: 'none' },
+                        }}
+                    >
+                        <IconButton
+                            size='large'
+                            aria-label='account of current user'
+                            aria-controls='menu-appbar'
+                            aria-haspopup='true'
+                            onClick={handleOpenNavMenu}
+                            color='inherit'
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id='menu-appbar'
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            {navLinks.map((page, index) => {
+                                return (
+                                    <MenuItem
+                                        key={index + page.name}
+                                        onClick={handleCloseNavMenu}
                                     >
-                                        <GoSignOut />
-                                        LogOut
-                                    </a>
-                                </li>
-                            )}
-                        </ul>
-                    </details>
-                </li>
-            </ul>
+                                        <Link key={page.name} href={page.path}>
+                                            <Typography textAlign='center'>
+                                                {page.name}
+                                            </Typography>
+                                        </Link>
+                                    </MenuItem>
+                                )
+                            })}
+                        </Menu>
+                    </Box>
+                    <Typography
+                        variant='h6'
+                        noWrap
+                        component='div'
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'flex', md: 'none' },
+                        }}
+                    >
+                        LOGO
+                    </Typography>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'none', md: 'flex' },
+                        }}
+                    >
+                        {navLinks.map((page, index) => {
+                            return (
+                                <Link key={index + page.name} href={page.path}>
+                                    <Button
+                                        onClick={handleCloseNavMenu}
+                                        sx={{
+                                            my: 2,
+                                            color: 'white',
+                                            display: 'block',
+                                        }}
+                                    >
+                                        {page.name}
+                                    </Button>
+                                </Link>
+                            )
+                        })}
+                    </Box>
 
-            {bttb && (
-                <button className={styles.toTop} onClick={scrollToTop}>
-                    {' '}
-                    &#x2B06;
-                </button>
-            )}
-            {modal.isModalOpen && (
-                <Modal
-                    closeModal={() => {
-                        dispatch(closeModal())
-                    }}
-                    modalContent={modal.modalContent}
-                    className={styles.modal}
-                />
-            )}
-        </nav>
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Tooltip title='Open settings'>
+                            <IconButton
+                                onClick={handleOpenUserMenu}
+                                sx={{ p: 0 }}
+                            >
+                                <Avatar alt='avatar' src='/favicon.ico' />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            sx={{ mt: '45px' }}
+                            id='menu-appbar'
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                        >
+                            <MenuItem>
+                                <Typography
+                                    textAlign='center'
+                                    sx={{ textTransform: 'capitalize' }}
+                                >
+                                    {account.user}
+                                </Typography>
+                            </MenuItem>
+                            {!account.isSignedIn ? (
+                                protLinks.map((setting, index) => {
+                                    return (
+                                        <MenuItem
+                                            key={index + setting.name}
+                                            onClick={handleCloseUserMenu}
+                                        >
+                                            <Link href={setting.path}>
+                                                <Typography textAlign='center'>
+                                                    {setting.name}
+                                                </Typography>
+                                            </Link>
+                                        </MenuItem>
+                                    )
+                                })
+                            ) : (
+                                <MenuItem
+                                    onClick={(e) => {
+                                        handelLogout(e)
+                                        handleCloseUserMenu(e)
+                                    }}
+                                >
+                                    <Typography textAlign='center'>
+                                        Logout
+                                    </Typography>
+                                </MenuItem>
+                            )}
+                        </Menu>
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
     )
 }
 

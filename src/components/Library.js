@@ -1,6 +1,3 @@
-// import IsAuth from '../utils/Api/IsAuth'
-// import { getUserAnime } from '../utils/Api/controller/anime'
-
 import AnimeShelf from './AnimeShelf'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -26,7 +23,7 @@ const Library = () => {
         <>
             {account.isSignedIn ? (
                 data && data.length > 0 ? (
-                    <AnimeShelf data={data} />
+                    <AnimeShelf buttonBool={false} data={data} />
                 ) : (
                     <h2>No Data Found</h2>
                 )

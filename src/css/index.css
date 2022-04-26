@@ -12,11 +12,5 @@ body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     position: relative;
-}
-.main {
-    width: 100%;
-    min-height: calc(100vh - 8.5rem);
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
+    background-color: rgb(236, 236, 236);
 }

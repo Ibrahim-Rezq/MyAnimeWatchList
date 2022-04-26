@@ -1,7 +1,5 @@
 import SignIn from '../../components/SignIn'
-import Nav from '../../components/Nav'
 import Head from 'next/head'
-import Footer from '../../components/Footer'
 
 const Login = () => {
     return (
@@ -10,11 +8,9 @@ const Login = () => {
                 <title>Login</title>
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <Nav />
-            <section className='container'>
+            <section className='main'>
                 <SignIn />
             </section>
-            <Footer />
         </>
     )
 }

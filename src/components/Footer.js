@@ -1,26 +1,30 @@
 import styles from '../css/Footer.module.css'
 import React from 'react'
-import { ImLinkedin, ImGithub } from 'react-icons/im'
+import Container from '@mui/material/Container'
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import GitHubIcon from '@mui/icons-material/GitHub'
+
 const Footer = () => {
     return (
         <>
-            <section className={styles.footer}>
-                <section className='container'>
+            <footer>
+                <Container>
                     <p>Made By Ibrahim_Amin</p>
                     <ul className={styles.social}>
                         <li>
                             <a href='https://www.linkedin.com/in/ibrahim-rezq'>
-                                <ImLinkedin />
+                                <LinkedInIcon color='primary' />
                             </a>
                         </li>
                         <li>
                             <a href='https://github.com/Ibrahim-Rezq'>
-                                <ImGithub />
+                                <GitHubIcon color='primary' />
                             </a>
                         </li>
                     </ul>
-                </section>
-            </section>
+                </Container>
+            </footer>
         </>
     )
 }

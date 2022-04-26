@@ -10,11 +10,13 @@ import {
 export const protLinks = [
     {
         path: '/account/register',
+        name: 'Register',
         protectedLink: true,
         icon: <GoSignIn />,
     },
     {
         path: '/account/login',
+        name: 'Login',
         protectedLink: true,
         icon: <GoSignIn />,
     },
@@ -22,13 +24,15 @@ export const protLinks = [
 export const navLinks = [
     {
         path: '/',
+        name: 'Home',
         icon: <GoHome />,
     },
-    { path: '/search', icon: <GoSearch /> },
+    { path: '/search', name: 'Search', icon: <GoSearch /> },
     {
         path: '/animeQuotes',
+        name: 'AnimeQuotes',
         icon: <GoQuote />,
     },
 
-    { path: '/animeTop', icon: <GoListOrdered /> },
+    { path: '/animeTop', name: 'AnimeTop', icon: <GoListOrdered /> },
 ]

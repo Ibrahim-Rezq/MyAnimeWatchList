@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import AnimeShelf from '../components/AnimeShelf'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
 import Head from 'next/head'
 import useDebounce from '../utils/hooks/useDebounce'
 import { useFetch } from '../utils/hooks/useFetch'
+import Box from '@mui/material/Box'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import FormHelperText from '@mui/material/FormHelperText'
 
 const Search = () => {
     const [vals, setVals] = useState('')
@@ -46,30 +49,48 @@ const Search = () => {
                 <title>Search...</title>
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <Nav />
+            <Box
+                sx={{
+                    minHeight: 'calc(100vh - 176px)',
+                }}
+            >
+                <FormControl
+                    sx={{
+                        m: 2,
+                        minWidth: '60%',
+                    }}
+                    variant='outlined'
+                >
+                    <InputLabel htmlFor='outlined-password'>Search</InputLabel>
+                    <OutlinedInput
+                        name='search'
+                        label='Search'
+                        id='search'
+                        type='search'
+                        placeholder='Search'
+                        onChange={handelSearch}
+                    />
+                    <FormHelperText
+                        sx={{ textAlign: 'center' }}
+                        id='component-helper-text'
+                    >
+                        {!animeData.length > 0 &&
+                            (!vals ? (
+                                <strong>Type to search</strong>
+                            ) : !loading ? (
+                                <strong>No thing with {vals} found</strong>
+                            ) : (
+                                <strong>...loading</strong>
+                            ))}
+                    </FormHelperText>
+                </FormControl>
 
-            <section className='container main'>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <input type='search' onChange={handelSearch} />
-                </form>
                 <div>
-                    {!animeData.length > 0 ? (
-                        !vals ? (
-                            <h3>type to search</h3>
-                        ) : !loading ? (
-                            <h3>no thing with {vals} found</h3>
-                        ) : (
-                            <h3>...loading</h3>
-                        )
-                    ) : (
-                        <AnimeShelf data={animeData} />
-                    )}
+                    {!animeData.length > 0 || <AnimeShelf data={animeData} />}
                 </div>
-            </section>
-
-            <Footer />
+            </Box>
         </>
     )
 }
- 
+
 export default Search

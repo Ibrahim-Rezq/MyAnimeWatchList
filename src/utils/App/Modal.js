@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
-const Modal = ({ className, modalContent, closeModal }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      closeModal();
-    }, 1500);
-  });
-  return (
-    <article className={className}>
-      <p>{modalContent}</p>
-    </article>
-  );
-};
+const Modal = ({ modalContent, closeModal }) => {
+    useEffect(() => {
+        setTimeout(() => {
+            closeModal()
+        }, 150000)
+    })
+    return (
+        <section className=' fixed top-0 left-0 right-0'>
+            <p>{modalContent}</p>
+        </section>
+    )
+}
 
-export default Modal;
+export default Modal

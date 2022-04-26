@@ -12,6 +12,14 @@ export const post = (anime) =>
     })
         .then((res) => res.json())
         .then((data) => data)
+export const del = (anime) =>
+    fetch(`${api}/anime/anime`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ anime: anime }),
+    })
+        .then((res) => res.json())
+        .then((data) => data)
 
 export const get = (animeId) =>
     fetch(`${api}/anime/anime/${animeId}`, { headers })

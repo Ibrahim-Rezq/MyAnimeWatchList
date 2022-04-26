@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import Nav from '../../components/Nav'
 import styles from '../../css/AnimeInfo.module.css'
 
 const AnimeInfo = () => {
@@ -58,8 +57,6 @@ const AnimeInfo = () => {
                     <title>{title}</title>
                     <link rel='icon' href='/favicon.ico' />
                 </Head>
-
-                <Nav />
                 <section className='main'>
                     <section className={styles.infoPage}>
                         <section className={styles.sideBar}>
